@@ -1,41 +1,68 @@
 {
-  "name": "react-native-webview-bridge-updated",
-  "version": "1.0.8",
-  "description": "React Native WebView Javascript Bridge - updated",
-  "license": "MIT",
-  "author": "Ali Najafizadeh",
-  "contributors": [
-    "Daniel Zlotin <zlotindaniel@gmail.com>",
-    "Yedidya Kennard <yedidyak@gmail.com>"
-  ],
-  "directories": {
-    "example": "examples",
-    "lib": "webview-bridge"
+  "_from": "git+https://github.com/zhanyan2021/react-native-webview-bridge.git",
+  "_id": "react-native-webview-bridge@0.40.2",
+  "_inBundle": false,
+  "_integrity": "",
+  "_location": "/react-native-webview-bridge",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "git",
+    "raw": "https://github.com/zhanyan2021/react-native-webview-bridge.git",
+    "rawSpec": "https://github.com/zhanyan2021/react-native-webview-bridge.git",
+    "saveSpec": "git+https://github.com/zhanyan2021/react-native-webview-bridge.git",
+    "fetchSpec": "https://github.com/zhanyan2021/react-native-webview-bridge.git",
+    "gitCommittish": null
   },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "git+https://github.com/zhanyan2021/react-native-webview-bridge.git#7233ade6058b08b20eaca7107c711ac2b99ede84",
+  "_spec": "https://github.com/zhanyan2021/react-native-webview-bridge.git",
+  "_where": "/Users/qinxiaoran/Desktop/cwork/ProductV/YYS3.0/app3/medical",
+  "author": {
+    "name": "Ali Najafizadeh"
+  },
+  "bugs": {
+    "url": "https://github.com/alinz/react-native-webview-bridge/issues"
+  },
+  "bundleDependencies": false,
+  "contributors": [
+    {
+      "name": "Hunter Medney"
+    }
+  ],
+  "dependencies": {
+    "create-react-class": "^15.6.0",
+    "invariant": "^2.2.2",
+    "keymirror": "0.1.1",
+    "prop-types": "^15.5.10"
+  },
+  "deprecated": false,
+  "description": "React Native WebView Javascript Bridge",
+  "directories": {
+    "example": "example",
+    "lib": "lib"
+  },
+  "homepage": "https://github.com/alinz/react-native-webview-bridge",
   "keywords": [
     "react-native",
     "react-component",
     "ios",
     "webview-bridge"
   ],
-  "homepage": "https://github.com/wix/react-native-webview-bridge",
-  "bugs": {
-    "url": "https://github.com/wix/react-native-webview-bridge/issues"
+  "license": "MIT",
+  "main": "webview-bridge",
+  "name": "react-native-webview-bridge",
+  "peerDependencies": {
+    "react-native-webview": "^7.5.2"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:wix/react-native-webview-bridge.git"
+    "url": "git+ssh://git@github.com/alinz/react-native-webview-bridge.git"
   },
   "scripts": {
-    "build": ":",
-    "test": ":",
-    "release": "npm version patch && npm publish && git push"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "main": "webview-bridge",
-  "dependencies": {
-    "create-react-class": "^15.6.2",
-    "invariant": "2.2.0",
-    "keymirror": "0.1.1",
-    "prop-types": "^15.6.0"
-  }
+  "version": "0.40.2"
 }

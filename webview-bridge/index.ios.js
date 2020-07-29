@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2015-present, Facebook, Inc.
+ * Copyright (c) 2015-present, Facebook, Inc.111
  * All rights reserved.
  *
  * Copyright (c) 2016-present, Ali Najafizadeh
@@ -14,27 +14,27 @@
  */
 'use strict';
 
-
 var React = require('react');
 var PropTypes = require('prop-types');
-var createReactClass = require('create-react-class');
 var ReactNative = require('react-native');
+var createReactClass = require('create-react-class');
 var invariant = require('invariant');
 var keyMirror = require('keymirror');
 var resolveAssetSource = require('react-native/Libraries/Image/resolveAssetSource');
 
+var WebView = require('react-native-webview');
 var {
   ActivityIndicator,
   EdgeInsetsPropType,
   StyleSheet,
   Text,
   View,
-  WebView,
+  ViewPropTypes,
   requireNativeComponent,
   UIManager,
   NativeModules: {
-    WebViewBridgeManager
-  }
+    WebViewBridgeManager,
+  },
 } = ReactNative;
 
 var BGWASH = 'rgba(255,255,255,0.8)';
@@ -109,8 +109,6 @@ var WebViewBridge = createReactClass({
     hideKeyboardAccessoryView: PropTypes.bool,
 
     keyboardDisplayRequiresUserAction: PropTypes.bool,
-
-    turnOffScrolling: PropTypes.bool,
   },
 
   getInitialState: function() {
@@ -121,7 +119,7 @@ var WebViewBridge = createReactClass({
     };
   },
 
-  componentWillMount: function() {
+  componentDidMount: function() {
     if (this.props.startInLoadingState) {
       this.setState({viewState: WebViewBridgeState.LOADING});
     }
@@ -176,15 +174,17 @@ var WebViewBridge = createReactClass({
       const onBridgeMessageCallback = this.props.onBridgeMessage;
       if (onBridgeMessageCallback) {
         const messages = event.nativeEvent.messages;
-        messages.forEach((message) => {
-          onBridgeMessageCallback(message);
-        });
+        if (messages && typeof messages.forEach === "function")
+          messages.forEach((message) => {
+            onBridgeMessageCallback(message);
+          });
       }
     };
 
     let {source, ...props} = {...this.props};
     delete props.onBridgeMessage;
     delete props.onShouldStartLoadWithRequest;
+    delete props.scalesPageToFit;
 
     var webView =
       <RCTWebViewBridge
@@ -265,7 +265,7 @@ var WebViewBridge = createReactClass({
 
     this.setState({
       lastErrorEvent: event.nativeEvent,
-      viewState: WebViewBridgeState.ERROR
+      viewState: WebViewBridgeState.ERROR,
     });
   },
 
@@ -320,7 +320,7 @@ var styles = StyleSheet.create({
   },
   webView: {
     backgroundColor: '#ffffff',
-  }
+  },
 });
 
 module.exports = WebViewBridge;

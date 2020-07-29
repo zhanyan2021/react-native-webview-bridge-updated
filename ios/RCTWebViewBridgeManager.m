@@ -13,23 +13,13 @@
 #import "RCTWebViewBridgeManager.h"
 #import "RCTWebViewBridge.h"
 
-#if __has_include(<React/RCTBridge.h>)
 #import <React/RCTBridge.h>
-#else
-#import "RCTBridge.h"
-#endif
-
-#if __has_include(<React/RCTUIManager.h>)
 #import <React/RCTUIManager.h>
-#else
-#import "RCTUIManager.h"
-#endif
 
-#if __has_include(<React/UIView+React.h>)
 #import <React/UIView+React.h>
-#else
-#import "UIView+React.h"
-#endif
+
+#import <WebKit/WebKit.h>
+
 
 @interface RCTWebViewBridgeManager () <RCTWebViewBridgeDelegate>
 
@@ -65,19 +55,18 @@ RCT_EXPORT_VIEW_PROPERTY(onShouldStartLoadWithRequest, RCTDirectEventBlock)
 RCT_REMAP_VIEW_PROPERTY(allowsInlineMediaPlayback, _webView.allowsInlineMediaPlayback, BOOL)
 RCT_EXPORT_VIEW_PROPERTY(onBridgeMessage, RCTDirectEventBlock)
 RCT_REMAP_VIEW_PROPERTY(keyboardDisplayRequiresUserAction, _webView.keyboardDisplayRequiresUserAction, BOOL)
-RCT_EXPORT_VIEW_PROPERTY(turnOffScrolling, BOOL)
 
 - (NSDictionary<NSString *, id> *)constantsToExport
 {
   return @{
     @"JSNavigationScheme": RCTJSNavigationScheme,
     @"NavigationType": @{
-      @"LinkClicked": @(UIWebViewNavigationTypeLinkClicked),
-      @"FormSubmitted": @(UIWebViewNavigationTypeFormSubmitted),
-      @"BackForward": @(UIWebViewNavigationTypeBackForward),
-      @"Reload": @(UIWebViewNavigationTypeReload),
-      @"FormResubmitted": @(UIWebViewNavigationTypeFormResubmitted),
-      @"Other": @(UIWebViewNavigationTypeOther)
+      @"LinkClicked": @(WKNavigationTypeLinkActivated),
+      @"FormSubmitted": @(WKNavigationTypeFormSubmitted),
+      @"BackForward": @(WKNavigationTypeBackForward),
+      @"Reload": @(WKNavigationTypeReload),
+      @"FormResubmitted": @(WKNavigationTypeFormResubmitted),
+      @"Other": @(WKNavigationTypeOther)
     },
   };
 }
@@ -101,7 +90,7 @@ RCT_EXPORT_METHOD(goForward:(nonnull NSNumber *)reactTag)
     if (![view isKindOfClass:[RCTWebViewBridge class]]) {
       RCTLogError(@"Invalid view returned from registry, expecting RCTWebViewBridge, got: %@", view);
     } else {
-      [view goForward];
+      [(RCTWebViewBridge *)view goForward];
     }
   }];
 }

@@ -10,12 +10,8 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
-#if __has_include(<React/RCTView.h>)
 #import <React/RCTView.h>
-#else
-#import "RCTView.h"
-#endif
-    
+
 @class RCTWebViewBridge;
 
 /**
@@ -42,7 +38,6 @@ shouldStartLoadForRequest:(NSMutableDictionary<NSString *, id> *)request
 @property (nonatomic, assign) UIEdgeInsets contentInset;
 @property (nonatomic, assign) BOOL automaticallyAdjustContentInsets;
 @property (nonatomic, assign) BOOL hideKeyboardAccessoryView;
-@property (nonatomic, assign) BOOL turnOffScrolling;
 @property (nonatomic, copy) NSString *injectedJavaScript;
 
 - (void)goForward;
@@ -51,3 +46,4 @@ shouldStartLoadForRequest:(NSMutableDictionary<NSString *, id> *)request
 - (void)sendToBridge:(NSString *)message;
 
 @end
+
